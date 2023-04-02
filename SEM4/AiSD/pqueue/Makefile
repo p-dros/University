@@ -1,18 +1,30 @@
-mainfile:=main
-CXX:=g++
-CXXEXT:=cpp
-CXXFLAGS:=-Wall -o
-mainfile_exe:=$(mainfile).x
+CC := g++
+CFLAGS := -Wall -std=c++11
+LIBS :=
+BIN_DIR := bin
+SRC_DIR := src
+INC_DIR := include
+TARGET := $(BIN_DIR)/main.out
 
-.PHONY: clean
+# List of source files to compile
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
 
-compile: $(mainfile).$(CXXEXT)
-	$(CXX) $(mainfile).$(CXXEXT) $(CXXFLAGS) $(mainfile_exe)
+# Include directories
+INC := -I $(INC_DIR)
 
-run: $(mainfile).$(CXXEXT) $(mainfile_exe)
-	./$(mainfile_exe)
+.PHONY: all clean run
 
-go: compile run
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LIBS)
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm *.x
+	rm -f $(TARGET) $(OBJS)
+
+run: $(TARGET)
+	./$(TARGET)
