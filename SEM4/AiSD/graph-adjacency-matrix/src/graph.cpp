@@ -2,6 +2,7 @@
 #include "set.hpp"
 #include <queue>
 #include <stdexcept>
+#include <memory>
 
 Graph::Graph(const int vertexCount) : vertexCount(vertexCount)
 {
@@ -119,26 +120,26 @@ Set<int> Graph::allConnections(const int vertexIdx)
     return connections;
 }
 
-int *BFS(Graph *G, int vertexIdx)
+std::unique_ptr<int[]> BFS(Graph *G, int sourceIdx)
 {
-    if (!G->isValidIndex(vertexIdx))
+    if (!G->isValidIndex(sourceIdx))
     {
         throw std::out_of_range("Index out of bounds");
     }
 
     int n = G->vertexCount;
 
-    int *dist = new int[n];
+    std::unique_ptr<int[]> dist(new int[n]);
     bool visited[n];
 
-    std::fill_n(dist, n, -1);
+    std::fill_n(dist.get(), n, -1);
     std::fill_n(visited, n, false);
 
     std::queue<int> queue;
-    queue.push(vertexIdx);
+    queue.push(sourceIdx);
 
-    visited[vertexIdx] = true;
-    dist[vertexIdx] = 0;
+    visited[sourceIdx] = true;
+    dist[sourceIdx] = 0;
 
     int round = 1;
 
@@ -146,24 +147,19 @@ int *BFS(Graph *G, int vertexIdx)
     {
         std::cout << "----COUNT " << round << "----" << std::endl;
         round++;
-        int currentVert = queue.front();
+        int currentVertex = queue.front();
         queue.pop();
 
         for (int i = 0; i < n; i++)
         {
-            if (G->matrix[currentVert][i] && !visited[i])
+            if (G->matrix[currentVertex][i] && !visited[i])
             {
                 visited[i] = true;
                 std::cout << "vertex: " << i << std::endl;
-                dist[i] = dist[currentVert] + 1;
+                dist[i] = dist[currentVertex] + 1;
                 queue.push(i);
             }
         }
-    }
-
-    for (int i = 0; i < G->vertexCount; i++)
-    {
-        std::cout << i << " dist: " << dist[i] << std::endl;
     }
 
     return dist;

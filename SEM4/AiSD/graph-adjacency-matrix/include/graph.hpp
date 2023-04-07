@@ -4,6 +4,7 @@
 #define GRAPH_HPP
 
 #include "set.hpp"
+#include <memory>
 
 class Graph
 {
@@ -13,16 +14,16 @@ private:
      */
     bool **matrix;
     /**
-     * @brief Number of vertices
-     */
-    int vertexCount;
-    /**
      * @brief Helper function, checks if index passed is valid
      * @return true, if valid, false, in not
      */
     const bool isValidIndex(const int vertexIdx);
 
 public:
+    /**
+     * @brief Number of vertices
+     */
+    const int vertexCount;
     /**
      * @brief create new Graph with vertexCount vertices
      * @param vertexCount number of vertices
@@ -79,7 +80,7 @@ public:
      * @param G Directed graph
      * @param vertexIdx source vertex
      */
-    friend int *BFS(Graph *G, int vertexIdx);
+    friend std::unique_ptr<int[]> BFS(Graph *G, int sourceIdx);
 };
 
 #endif
