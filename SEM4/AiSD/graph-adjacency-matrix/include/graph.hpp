@@ -20,7 +20,7 @@ private:
      * @brief Helper function, checks if index passed is valid
      * @return true, if valid, false, in not
      */
-    bool isValidIndex(const int vertexIdx);
+    const bool isValidIndex(const int vertexIdx);
 
 public:
     /**
@@ -52,7 +52,7 @@ public:
      * @param srcIdx source vertex
      * @param distIdx destination vertex
      */
-    bool hasEdge(const int srcIdx, const int distIdx);
+    const bool hasEdge(const int srcIdx, const int distIdx);
     /**
      * @brief
      * @return Set of vertices that has connection with
@@ -74,6 +74,12 @@ public:
      * @param vertexIdx source vertex
      */
     Set<int> allConnections(const int vertexIdx);
+    /**
+     * @brief Performs a breath-first search on the graph.
+     * @param G Directed graph
+     * @param vertexIdx source vertex
+     */
+    friend int *BFS(Graph *G, int vertexIdx);
 };
 
 #endif

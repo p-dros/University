@@ -7,14 +7,14 @@ int main(int argc, char const *argv[])
     Graph graph(5);
 
     graph.addEdge(0, 1);
-    graph.addEdge(1, 2);
-    graph.addEdge(2, 3);
-    graph.addEdge(3, 4);
-    graph.addEdge(4, 0);
+    graph.addEdge(0, 2);
     graph.addEdge(0, 3);
+    graph.addEdge(2, 3);
+    graph.addEdge(1, 4);
+    graph.addEdge(3, 4);
 
-    Set<int> set = graph.allConnections(0);
+    int *values = BFS(&graph, 0);
 
-    set.print();
+    delete[] values;
     return 0;
 }
