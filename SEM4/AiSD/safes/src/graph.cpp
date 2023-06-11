@@ -1,10 +1,11 @@
 #include "graph.hpp"
 #include <set>
 #include <queue>
-#include <stack>
 #include <stdexcept>
 #include <memory>
 #include <iostream>
+#include <vector>
+#include <stack>
 
 Graph::Graph(const int vertexCount) : vertexCount(vertexCount)
 {
@@ -122,9 +123,45 @@ std::set<int> Graph::allConnections(const int vertexIdx)
     return connections;
 }
 
-void Graph::dfs(int v, bool *visited)
+std::vector<int> Graph::topologicalSort()
 {
-    std::cout << v << std::endl;
+    std::vector<int> result;
+    std::vector<bool> visited(vertexCount, false);
+    std::stack<int> stk;
+
+    for (int i = 0; i < vertexCount; i++)
+    {
+        if (!visited[i])
+        {
+            topologicalSortDFS(i, visited, stk);
+        }
+    }
+
+    while (!stk.empty())
+    {
+        result.push_back(stk.top());
+        stk.pop();
+    }
+
+    return result;
+}
+
+void Graph::topologicalSortDFS(int v, std::vector<bool> &visited, std::stack<int> &stk)
+{
+    visited[v] = true;
+    std::set<int> connections = outConnections(v);
+    for (int u : connections)
+    {
+        if (!visited[u])
+        {
+            topologicalSortDFS(u, visited, stk);
+        }
+    }
+    stk.push(v); // Dodaj wierzchołek na stos po zakończeniu przeszukiwania DFS
+}
+
+void Graph::dfs(int v, std::vector<bool> &visited)
+{
     visited[v] = true;
 
     std::set<int> connections = outConnections(v);
@@ -135,37 +172,4 @@ void Graph::dfs(int v, bool *visited)
             dfs(u, visited);
         }
     }
-}
-
-void Graph::topologicalSort(int *result)
-{
-    int curr = vertexCount - 1;
-    bool visited[vertexCount];
-
-    std::fill_n(visited, vertexCount, false);
-
-    for (int i = 0; i < vertexCount; i++)
-    {
-        if (!visited[i])
-        {
-            topologicalSortVisit(i, visited, result, curr);
-        }
-    }
-}
-
-void Graph::topologicalSortVisit(int v, bool *visited, int *result, int &curr)
-{
-    visited[v] = true;
-    std::set<int> connections = outConnections(v);
-
-    for (int u : connections)
-    {
-        if (!visited[u])
-        {
-            topologicalSortVisit(u, visited, result, curr);
-        }
-    }
-
-    result[curr] = v;
-    curr--;
 }

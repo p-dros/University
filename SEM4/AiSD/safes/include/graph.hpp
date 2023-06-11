@@ -4,6 +4,7 @@
 #define GRAPH_HPP
 
 #include <set>
+#include <stack>
 #include <memory>
 #include <vector>
 
@@ -19,11 +20,10 @@ private:
      * @return true, if valid, false, in not
      */
     const bool isValidIndex(const int vertexIdx);
-
-    void topologicalSortVisit(int v, bool *visited, int *result, int &curr);
+    void topologicalSortDFS(int v, std::vector<bool> &visited, std::stack<int> &stk);
 
 public:
-    /**?
+    /**
      * @brief Number of vertices
      */
     const int vertexCount;
@@ -78,18 +78,10 @@ public:
      * @param vertexIdx source vertex
      */
     std::set<int> allConnections(const int vertexIdx);
-    /**
-     * @brief Performs a breath-first search on the graph.
-     * @param G Directed graph
-     * @param vertexIdx source vertex
-     */
-    /**
-     * @brief Perfoms a topological sort on the graph.
-     * @returns A sorted std::vector with a topological order.
-     */
-    void topologicalSort(int *result);
 
-    void dfs(int v, bool *visited);
+    std::vector<int> topologicalSort();
+
+    void dfs(int v, std::vector<bool> &visited);
 };
 
 #endif
