@@ -84,4 +84,6 @@ public:
     void dfs(int v, std::vector<bool> &visited);
 };
 
+int solvePuzzle(Graph &graph);
+
 #endif
