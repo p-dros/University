@@ -3,8 +3,10 @@
 #ifndef GRAPH_HPP
 #define GRAPH_HPP
 
-#include "set.hpp"
+#include <set>
+#include <stack>
 #include <memory>
+#include <vector>
 
 class Graph
 {
@@ -18,9 +20,10 @@ private:
      * @return true, if valid, false, in not
      */
     const bool isValidIndex(const int vertexIdx);
+    void topologicalSortDFS(int v, std::vector<bool> &visited, std::stack<int> &stk);
 
 public:
-    /**?
+    /**
      * @brief Number of vertices
      */
     const int vertexCount;
@@ -60,31 +63,25 @@ public:
      * vertex with passed index
      * @param vertexIdx source vertex
      */
-    Set<int> inConnections(const int vertexIdx);
+    std::set<int> inConnections(const int vertexIdx);
     /**
      * @brief
      * @return Set of vertices that are connected with
      * vertex with passed index
      * @param vertexIdx source vertex
      */
-    Set<int> outConnections(const int vertexIdx);
+    std::set<int> outConnections(const int vertexIdx);
     /**
      * @brief
      * @return Set of vertices that has direct connection with
      * vertex with passed index
      * @param vertexIdx source vertex
      */
-    Set<int> allConnections(const int vertexIdx);
-    /**
-     * @brief Performs a breath-first search on the graph.
-     * @param G Directed graph
-     * @param vertexIdx source vertex
-     */
-    friend std::unique_ptr<int[]> BFS(Graph *G, int sourceIdx);
+    std::set<int> allConnections(const int vertexIdx);
 
-    friend void DFS(Graph *G, int sourceIdx);
-    friend void DFS(Graph *G, int index, bool *visited);
-    friend void DFS_stack(Graph *G, int sourceIdx);
+    std::vector<int> topologicalSort();
+
+    void dfs(int v, std::vector<bool> &visited);
 };
 
 #endif

@@ -39,7 +39,8 @@ public:
         {
             std::cout << array[i] << ", ";
         }
-        std::cout << std::endl <<  "-------------" << std::endl;
+        std::cout << std::endl
+                  << "-------------" << std::endl;
     }
 };
 
@@ -47,7 +48,7 @@ template <typename T>
 float Set<T>::EXPAND_FACTOR = 2;
 
 template <typename T>
-float Set<T>::NARROW_FACTOR = 0.5;
+float Set<T>::NARROW_FACTOR = 0.4;
 
 template <typename T>
 float Set<T>::MINIMUM_CAPACITY = 10;

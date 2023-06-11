@@ -80,11 +80,6 @@ public:
      * @param G Directed graph
      * @param vertexIdx source vertex
      */
-    friend std::unique_ptr<int[]> BFS(Graph *G, int sourceIdx);
-
-    friend void DFS(Graph *G, int sourceIdx);
-    friend void DFS(Graph *G, int index, bool *visited);
-    friend void DFS_stack(Graph *G, int sourceIdx);
 };
 
 #endif
