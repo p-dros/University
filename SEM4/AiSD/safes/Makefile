@@ -1,11 +1,12 @@
 CC := g++
 CFLAGS := -Wall -std=c++11 -g
-LIBS :=
 BIN_DIR := bin
 SRC_DIR := src
 INC_DIR := include
 MAIN_TARGET := $(BIN_DIR)/main.out
 TEST_TARGET := $(BIN_DIR)/test.out
+
+TEST_FILES := 1_23.txt 2_3.txt 3_8.txt 4_1000.txt 5_500.txt 6_2.txt 7_31.txt 8_5041.txt
 
 # List of source files to compile
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
@@ -19,8 +20,11 @@ INC := -I $(INC_DIR)
 
 all: $(MAIN_TARGET)
 
+$(TEST_FILES): %: $(MAIN_TARGET)
+	./$(MAIN_TARGET) < tests/$@
+
 $(MAIN_TARGET): $(MAIN_OBJS)
-	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ 
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
@@ -33,6 +37,7 @@ run: $(MAIN_TARGET)
 
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
+
 
 $(TEST_TARGET): $(TEST_OBJS)
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LIBS)

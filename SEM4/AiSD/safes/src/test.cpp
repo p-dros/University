@@ -5,6 +5,8 @@
 #include <cassert>
 #include "graph.hpp"
 
+#include <chrono>
+
 int getExpectedResult(std::string filename)
 {
     size_t underscorePos = filename.find("_");
@@ -54,8 +56,14 @@ void test_files()
         int expectedResult = getExpectedResult(filename);
         Graph graph = createGraphFromFile(filename);
 
+        auto start = std::chrono::high_resolution_clock::now();
         assert(solvePuzzle(graph) == expectedResult);
+        auto stop = std::chrono::high_resolution_clock::now();
+
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
         std::cout << filename << " file passed test" << std::endl;
+        std::cout << "Time taken: " << duration.count() << " milliseconds" << std::endl;
     }
 }
 
