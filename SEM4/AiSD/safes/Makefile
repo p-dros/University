@@ -6,7 +6,7 @@ INC_DIR := include
 MAIN_TARGET := $(BIN_DIR)/main.out
 TEST_TARGET := $(BIN_DIR)/test.out
 
-TEST_FILES := 1_23.txt 2_3.txt 3_8.txt 4_1000.txt 5_500.txt 6_2.txt 7_31.txt 8_5041.txt
+TEST_FILES := 1_23.txt 2_3.txt 3_8.txt 4_1000.txt 5_500.txt 6_2.txt 7_31.txt 8_5041.txt 10_1.txt 11_20175.txt 12_991043.txt 13_19.txt 14_1.txt
 
 # List of source files to compile
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)

@@ -4,7 +4,6 @@
 
 int main(int argc, char const *argv[])
 {
-
     int safeCount;
     std::cout << "Podaj Liczbe sejfow: " << std::endl;
 
