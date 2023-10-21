@@ -1,5 +1,5 @@
-START_NUM = 98
-LENGTH = 15
+START_NUM = 1
+LENGTH = 12
 
 max_num = START_NUM + LENGTH - 1
 max_num_len = len(str(max_num))
