@@ -1,7 +1,7 @@
 import time
 
-LENGTH = 100
-PERCENT_PER_SECOND = 20
+LENGTH = 20
+PERCENT_PER_SECOND = 50
 
 
 def get_progress_bar(percent):
@@ -15,4 +15,3 @@ if __name__ == "__main__":
         print(get_progress_bar(i), end="\r")
         time.sleep(1 / PERCENT_PER_SECOND)
     print()
-    input("Press anything to exit...")

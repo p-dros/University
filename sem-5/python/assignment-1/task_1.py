@@ -38,7 +38,6 @@ def parse_factors(factors: list[int]) -> str:
 
 if __name__ == "__main__":
     argv = sys.argv[1:]
-    # filter the argv to contain only integer numbers, in case of non-integer numbers, print message and filter the non-integer
 
     numbers = [int(arg) for arg in argv if arg.isdigit()]
     if len(numbers) == 0:
