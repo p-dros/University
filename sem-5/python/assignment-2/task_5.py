@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     def test(N: float, expected: float):
         result = fun(N)
-        print(f"Binary representation of {N}: {bin(N)}")
+        print(f"Binary representation of {N}: {bin(N)[2:]}")
         print(f"fun({N}): {result}, expected: {expected}")
         assert result == expected
 

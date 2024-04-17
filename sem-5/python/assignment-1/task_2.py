@@ -1,5 +1,5 @@
 START_NUM = 1
-LENGTH = 12
+LENGTH = 100
 
 max_num = START_NUM + LENGTH - 1
 max_num_len = len(str(max_num))
@@ -8,9 +8,9 @@ DIGITS_COUNT = 2 + max_num_len
 start_num_digit_count = len(str(START_NUM))
 measure = ""
 
-measure += f"{" " * (start_num_digit_count - 1)}|"
+measure += f'{" " * (start_num_digit_count - 1)}|'
 for num in range(LENGTH - 1):
-    measure += f"{"." * DIGITS_COUNT}|"
+    measure += f'{"." * DIGITS_COUNT}|'
 measure += "\n"
 
 space_count = 0

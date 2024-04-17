@@ -15,7 +15,7 @@ def plot_polynomial(
         print("Invalid expression")
         exit()
 
-    x_val = np.linspace(x_min, x_max, 1000)
+    x_val = np.linspace(x_min, x_max, 3)
     y_val = [eval(expression) for x in x_val]
 
     plt.figure(figsize=[9, 5])
@@ -24,7 +24,7 @@ def plot_polynomial(
     plt.xlabel("x")
     plt.ylabel("f(x)")
     plt.grid(True)
-    plt.savefig(file_name)
+    plt.show()
 
 
 if __name__ == "__main__":

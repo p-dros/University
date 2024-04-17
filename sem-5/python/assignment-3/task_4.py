@@ -16,11 +16,6 @@ def pamiec(func):
 
         return result
 
-    # tu powinien być kod tworzący słownik (element - wartość), który jest sprawdzany
-    # do obliczeń wyrazów ciągu - które by były wyliczane rekurencyjnie i wpisywane
-    # do słownika tylko gdy wcześniej nie były obliczone
-    # normalnie bez buforowania by było return func(*args, **kwargs)
-
     return wrapper
 
 
