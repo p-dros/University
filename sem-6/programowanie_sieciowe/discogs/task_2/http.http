@@ -1,0 +1,6 @@
+GET https://api.discogs.com/artists/125246 HTTP/2.0
+
+###
+
+GET https://api.discogs.com/database/search?q="nirvana" HTTP/1.1
+Authorization: Discogs key=EuQzchfIpmeMEImAVOho, secret=bpMHlfwCvvBfJfYcGDgeKhfgXqljsmYm
